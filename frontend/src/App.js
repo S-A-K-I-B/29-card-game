@@ -4,7 +4,7 @@ import Scoreboard from "./components/Scoreboard";
 
 function App() {
   const [state, setState] = useState(null);
-  const ws = new WebSocket("ws://localhost:3000");
+  const ws = new WebSocket("wss://two9-card-game.onrender.com");
 
   useEffect(() => {
     ws.onmessage = (msg) => {
