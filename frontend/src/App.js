@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import Table from "./components/Table";
-import Scoreboard from "./components/Scoreboard";
+import React from 'react';
+import Table from './components/Table';
 
 function App() {
-  const [state, setState] = useState(null);
-  const ws = new WebSocket("wss://two9-card-game.onrender.com");
+  // Connect to backend using environment variable
+  const ws = new WebSocket(process.env.REACT_APP_BACKEND_URL);
 
-  useEffect(() => {
-    ws.onmessage = (msg) => {
-      const data = JSON.parse(msg.data);
-      setState(data.state);
-    };
-  }, []);
+  ws.onopen = () => {
+    console.log("Connected to backend");
+  };
+
+  ws.onmessage = (event) => {
+    console.log("Message from server:", event.data);
+  };
 
   return (
-    <div className="bg-green-700 h-screen flex flex-col">
-      <Scoreboard scores={state?.scores} />
-      <Table players={state?.players} tricks={state?.tricks} />
+    <div>
+      <h1>29 Card Game</h1>
+      <Table />
     </div>
   );
 }

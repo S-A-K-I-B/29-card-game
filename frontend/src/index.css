@@ -1,11 +1,9 @@
-/* Basic reset */
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f5f5f5;
 }
 
-/* Root element */
 #root {
   display: flex;
   justify-content: center;
